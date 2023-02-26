@@ -11,21 +11,31 @@ export const App = () => {
   const [bad, setBad] = useState(0);
   const state = ['good', 'neutral', 'bad'];
 
-  const onLeaveFeedback = event => {
-    switch (event) {
-      case 'good':
-        setGood(good + 1);
-        break;
-      case 'neutral':
-        setNeutral(neutral + 1);
-        break;
-      case 'bad':
-        setBad(bad + 1);
-        break;
+  const options = {
+    good: setGood,
+    neutral: setNeutral,
+    bad: setBad,
+  };
 
-      default:
-        return alert('🐷 something went wrong please try again');
-    }
+  const onLeaveFeedback = event => {
+    options[event](prev => prev + 1);
+    //OR
+    // switch (event) {
+    //   case 'good':
+    //     setGood(good + 1);
+    //     break;
+    //   case 'neutral':
+    //     setNeutral(neutral + 1);
+    //     break;
+    //   case 'bad':
+    //     setBad(bad + 1);
+    //     break;
+
+    //   default:
+    //     return alert('🐷 something went wrong please try again');
+    // }
+
+    // this.setState(prevState => ({ [state]: prevState[state] + 1 }));
   };
 
   const countTotalFeedback = () => {
