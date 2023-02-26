@@ -9,7 +9,7 @@ export const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const state = ['good', 'neutral', 'bad'];
+  // const state = ['good', 'neutral', 'bad'];
 
   const options = {
     good: setGood,
@@ -52,7 +52,10 @@ export const App = () => {
   return (
     <>
       <Section title={'Please leave your feedback✍️'}>
-        <FeedbackOptions state={state} onLeaveFeedback={onLeaveFeedback} />
+        <FeedbackOptions
+          state={Object.keys(options)}
+          onLeaveFeedback={onLeaveFeedback}
+        />
         {countTotalFeedback() <= 0 ? (
           <Notify message={'There is no feedback🍓'} />
         ) : (
